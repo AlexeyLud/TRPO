@@ -1,6 +1,4 @@
-# trpo
-Project for TRPO. 
-
+# trpo 
 Worked on the documentation, and also developed all the necessary layouts for frontend: Ilya Yakovchik. 
 
 Developed: Tupik Denis(fronend), Kotashevich Stanislav(backend).
