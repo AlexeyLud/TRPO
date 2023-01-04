@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/../Styles/styles.css">
+    <link rel="stylesheet" href="/../Styles/changes.css">
+    <link rel="stylesheet" href="/../Styles/submit.css">
+    <title>Редактирование профиля</title>
+</head>
+<body>
+    <form action="/../">
+        <input class="btn_logo_other" type="image" src="/../pictures/logo_small_new.png" alt="LookTo">
+    </form>
+    <div class="changes">
+        <h1 align="center">Редактирование профиля</h1>
+        <form enctype="multipart/form-data" method="post">
+            Аватар: <input type="file" name="avatar" accept="image/*">
+            <div id="other_info">
+                Фамилия: <br><input type="text" name="last_name" id="last_name" placeholder="Фамилия" required> <br>
+                Имя: <br><input type="text" name="first_name" id="first_name" placeholder="Имя" required> <br>
+            </div>
+            <input type="submit" name="submit" id="submit" class="submit" value="Сохранить">
+        </form>
+    </div>
+</body>
+</html>

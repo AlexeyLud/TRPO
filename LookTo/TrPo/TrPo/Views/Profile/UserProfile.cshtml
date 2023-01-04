@@ -1,0 +1,126 @@
+﻿@using TrPo.Models;
+@using System.Security.Claims;
+@model List<BroadcastList>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/profile.css">
+    <link rel="stylesheet" href="/css/submit.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+          integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;900&display=swap" rel="stylesheet">
+    <title>>@User.Identity.Name</title>
+</head>
+<body>
+    <div class="upper">
+        <div class="header">
+            <form asp-action="Index" asp-controller="Home">
+                <input class="btn_logo" type="image" src="/pictures/logo_small_new.png" alt="LookTo">
+            </form>
+        </div>
+        <div class="status">
+            <div class="text">Статус: @User.FindFirst(x => x.Type == ClaimsIdentity.DefaultRoleClaimType).Value</div>
+        </div>
+    </div>
+    <div class="profile">
+        <div class="broadcasts" id="left">
+            <div class="view">
+                <h3 align="center" style="color:red;">Запланированные трансляции</h3>
+                <div class="video" id="left_video">
+                    @{ 
+                        foreach (var broadcast in Model)
+                        {
+                            if (broadcast.Condition == "planned" && broadcast.UserId == int.Parse(User.FindFirst(x => x.Type == "id").Value))
+                            {
+                                string src = "https://www.youtube.com/embed/" + broadcast.Code;
+                                <iframe width="270" height="152" src="@src" title="YouTube video player" frameborder="0"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                <div align="center">@broadcast.Name</div>
+                            }
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="information" id="center">
+            <div class="avatar">
+                @if (User.FindFirst(x => x.Type == "avatar").Value == "")
+                {
+                    <img class="profile_avatar" src="/pictures/not_avatar.jpg" alt="user" id="profile_avatar">
+                }
+                else
+                {
+                    <img class="profile_avatar" src="@User.FindFirst(x => x.Type == "avatar").Value" alt="user" id="profile_avatar">
+                }
+            </div>
+            <div class="names">
+                <div class="nickname">
+                    @User.Identity.Name
+                </div>
+                <div class="first_last">
+                    @User.FindFirst(x => x.Type == "lastname").Value @User.FindFirst(x => x.Type == "firstname").Value
+                </div>
+            </div>
+            <br>
+            <div class="buttons">
+                <div class="btn_row">
+                    <form asp-action="ChangeInfo" asp-controller="Profile" method="get">
+                        <input type="submit" class="submit btn-profile" id="info" value="Редактировать профиль">
+                    </form>
+                    @if (User.FindFirst(x => x.Type == ClaimsIdentity.DefaultRoleClaimType).Value == "user")
+                    {
+                        <form asp-action="Specialist" asp-controller="Profile" method="get">
+                            <input type="submit" class="submit btn-profile" id="mentor" value="Стать ментором">
+                        </form>
+                    }
+                    else
+                    {
+                        <form asp-action="CreateBroadcast" asp-controller="Profile" method="get">
+                            <input type="submit" class="submit btn-profile" id="broadcast" value="Создать трансляцию">
+                        </form>
+                    }
+                </div>
+                <br>
+                <div class="btn_row">
+                    @if (User.FindFirst(x => x.Type == ClaimsIdentity.DefaultRoleClaimType).Value == "admin")
+                    {
+                        <form action="#">
+                            <input type="submit" class="submit btn-profile" id="nmb_mentor" value="Заявки на ментерство">
+                        </form>
+                    }
+                </div>
+                <div class="btn_row">
+                    <form asp-action="Logout" asp-controller="Account">
+                        <input type="submit" class="submit btn-profile" id="exit" value="Выход">
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="broadcasts" id="right">
+            <div class="view">
+                <h3 align="center" style="color:green;">Завершённые трансляции</h3>
+                <div class="video" id="right_video">
+                    @{ 
+                        foreach (var broadcast in Model)
+                        {
+                            if (broadcast.Condition == "viewed" && broadcast.UserId == int.Parse(User.FindFirst(x => x.Type == "id").Value))
+                            {
+                                string src = "https://www.youtube.com/embed/" + broadcast.Code;
+                                <iframe width="270" height="152" src="@src" title="YouTube video player" frameborder="0"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                <div align="center">@broadcast.Name</div>
+                            }
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

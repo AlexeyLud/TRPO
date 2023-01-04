@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/auth_reg_help.css">
+    <link rel="stylesheet" href="/css/submit.css">
+    <title>Помощь</title>
+</head>
+<body>
+    <form asp-action="Index" asp-controller="Home">
+        <input class="btn_logo_other" type="image" src="/pictures/logo_small_new.png" alt="LookTo">
+    </form>
+    <div class="auth_reg_help">
+        <h1 align="center">Код подтверждения</h1>
+        <p>Введите код, который пришёл вам на почту</p>
+        <form asp-action="ConfirmEmail" asp-controller="Account" asp-antiforgery="true">
+            <input type="text" name="emailcode" id="email_code" placeholder="Код подтверждения">
+            <span>@Html.ValidationMessage("InvalidCode")</span>
+            <input type="hidden" name="Email" id="our_email" value="@TempData["email"]">
+            <input type="hidden" name="Nickname" id="our_email" value="@TempData["nickname"]">
+            <input type="hidden" name="FirstName" id="our_email" value="@TempData["firstname"]">
+            <input type="hidden" name="Password" id="our_email" value="@TempData["password"]">
+            <input type="hidden" name="LastName" id="our_email" value="@TempData["lastname"]">
+            <a class="resend" asp-action="SendEmail" asp-controller="Account" asp-all-route-data='new Dictionary<string, string> {
+                { "email", @TempData["email"].ToString() }, { "nickname", @TempData["nickname"].ToString() }, { "firstname", @TempData["firstname"].ToString() },
+                { "password", @TempData["password"].ToString() }, { "lastname", @TempData["lastname"].ToString() }, }'>Отправить повторно</a> <br>
+            <input type="submit" name="submit" id="submit" class="submit" value="Подтвердить">
+        </form>
+    </div>
+</body>
+</html>

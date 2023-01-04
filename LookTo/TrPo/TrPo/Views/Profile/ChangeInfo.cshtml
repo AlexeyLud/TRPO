@@ -1,0 +1,39 @@
+﻿@model TrPo.Models.ChangeInfoModel
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/changes.css">
+    <link rel="stylesheet" href="/css/submit.css">
+    <title>Редактирование профиля</title>
+</head>
+<body>
+    <form asp-action="Index" asp-controller="Home">
+        <input class="btn_logo_other" type="image" src="/pictures/logo_small_new.png" alt="LookTo">
+    </form>
+    <div class="changes">
+        <h1 align="center">Редактирование профиля</h1>
+        <form enctype="multipart/form-data" asp-action="ChangeInfo" asp-controller="Profile" asp-antiforgery="true" method="post">
+            Аватар: <input type="file" asp-for="Avatar" accept="image/*">
+            <div id="other_info">
+                Фамилия: <br><input type="text" asp-for="LastName" id="last_name"  placeholder="Фамилия" value="@User.FindFirst(x => x.Type == "lastname").Value"> <br>
+                Имя: <br><input type="text" asp-for="FirstName" name="first_name" id="first_name" placeholder="Имя" value="@User.FindFirst(x => x.Type == "firstname").Value"> <br>
+                <!--Enter a country: <br><input type="text" name="country" id="country" placeholder="Enter a country"> <br>
+                Enter a city: <br><input type="text" name="city" id="city" placeholder="Enter a city"> <br>
+                Sex: <br><select name="sex" id="sex">
+                    <option value="No" selected>Not choose</option>
+                    <option value="Male">Male</option>
+                    <option value="Women">Women</option>
+                </select> <br>
+                Your birthday: <br><input type="date" name="birthday" id="birthday"> <br>-->
+            </div>
+            <input type="hidden" value="@User.FindFirst(x => x.Type == "email").Value" name="Email"/>
+            <input type="submit" name="submit" id="submit" class="submit" value="Сохранить">
+        </form>
+    </div>
+</body>
+</html>

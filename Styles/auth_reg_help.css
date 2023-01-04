@@ -1,0 +1,72 @@
+body{
+    background-image: url(/pictures/profile_background.jpg);
+}
+
+.up{
+    color: white;
+    font-size: 60px;
+    margin-top: 15px;
+}
+
+.auth_reg_help{
+    background-color: white;
+    width: 30%;
+    margin: auto;
+    padding: 50px;
+    margin-top: 10px;
+    margin-bottom: 50px;
+    border-radius: 10px;
+}
+
+input, select{
+   height: 20px;
+   width: 100%;
+   margin-bottom: 20px;
+}
+
+#repeat_password{
+    margin-bottom: 0px;
+}
+
+#email_code{
+    margin-bottom: 7px;
+}
+
+.resend{
+    font-size: 14px;
+}
+
+#answer{
+    margin-top: 100px;
+    padding: 15px;
+    width: 50%;
+    color: rgb(88, 189, 88);
+}
+
+.add{
+    width: 75%;
+}
+
+.list{
+    padding: 15px;
+}
+
+td, tr, th{
+    border: 1px solid black;
+    text-align: center;
+    width: 200px;
+}
+
+table{
+    border-spacing: 0px 0px;
+    width: 100%;
+}
+
+.red{
+    color: red;
+}
+
+.mentor{
+    font-family: 'Arial';
+    font-size: 20px;
+}

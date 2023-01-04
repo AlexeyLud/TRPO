@@ -1,0 +1,29 @@
+﻿@model TrPo.Models.LoginModel
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/auth_reg_help.css">
+    <link rel="stylesheet" href="/css/submit.css">
+    <title>Авторизация</title>
+</head>
+<body>
+    <form asp-action="Index" asp-controller="Home">
+        <input class="btn_logo_other" type="image" src="/pictures/logo_small_new.png" alt="LookTo">
+    </form>
+    <div class="auth_reg_help">
+        <h1 align="center">Авторизация</h1>
+        <form asp-action="Authorization" asp-controller="Account" asp-antiforgery="true">
+            Email: <br><input type="email" asp-for="Email" id="email" placeholder="Email" required> <br>
+            Пароль: <br><input type="password" asp-for="Password" id="password" placeholder="Пароль" required> <br>
+            <span>@Html.ValidationMessage("err")</span>
+            <input type="submit" name="submit" id="submit" class="submit" value="Войти">
+        </form>
+        <a href="@Url.Action("Registration", "Account")">Регистрация</a>
+    </div>
+</body>
+</html>

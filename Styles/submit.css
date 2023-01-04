@@ -1,0 +1,22 @@
+.submit{
+    border-radius: 20px;
+    background-color: rgb(160, 182, 229);
+    position: relative;
+    left: 25%;
+    width: 50%;
+    font-size: 20px;
+    height: 30px;
+    margin-top: 20px; 
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.submit:hover {
+    background:#53ea93;
+    -webkit-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    transform: scale(1.2);
+}
